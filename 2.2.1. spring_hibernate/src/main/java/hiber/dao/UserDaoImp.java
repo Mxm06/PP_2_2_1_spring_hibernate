@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDaoImp implements UserDao {
    String getUserByCarsIdHQL = "FROM User u where u.car.model =:model AND u.car.series =:series";
 
-   @Autowired
+
    private SessionFactory sessionFactory;
 
    @Override
@@ -24,7 +24,10 @@ public class UserDaoImp implements UserDao {
    public User getUserByCarsId(String model,int series) {
       return sessionFactory.getCurrentSession().createQuery(getUserByCarsIdHQL,User.class).setParameter("model",model).setParameter("series",series).uniqueResult();
    }
-
+   @Autowired
+   public UserDaoImp(SessionFactory sessionFactory) {
+      this.sessionFactory = sessionFactory;
+   }
 
    @Override
    @SuppressWarnings("unchecked")

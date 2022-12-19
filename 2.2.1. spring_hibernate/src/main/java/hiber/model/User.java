@@ -22,7 +22,8 @@ public class User {
    private String email;
 
    @OneToOne
-   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+   @MapsId()
+   @JoinColumn(name = "id")
    private Car car;
 
 
